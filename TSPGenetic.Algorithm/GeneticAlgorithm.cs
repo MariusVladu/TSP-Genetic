@@ -102,7 +102,7 @@ namespace TSPGenetic.Algorithm
                 solutions.Add(new Solution
                 {
                     Individual = individual,
-                    FitnessScore = fitnessFunction.GetFitnessScore(individual, settings.WeightLimit, settings.Items)
+                    FitnessScore = fitnessFunction.GetFitnessScore(individual, settings.WeightLimit, settings.Cities)
                 });
 
             return solutions;

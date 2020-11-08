@@ -2,6 +2,7 @@
 using TSPGenetic.Providers.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TSPGenetic.Providers
 {
@@ -9,22 +10,21 @@ namespace TSPGenetic.Providers
     {
         private readonly static Random random = new Random();
 
-        public List<Individual> GetInitialPopulation(int populationSize, int numberOfGenes)
+        public List<Individual> GetInitialPopulation(int populationSize, int numberOfCities)
         {
             var initialPopulation = new List<Individual>();
 
             for (int i = 0; i < populationSize; i++)
-                initialPopulation.Add(GetRandomIndividual(numberOfGenes));
+                initialPopulation.Add(GetRandomIndividual(numberOfCities));
 
             return initialPopulation;
         }
 
-        private Individual GetRandomIndividual(int numberOfGenes)
+        private Individual GetRandomIndividual(int numberOfCities)
         {
-            var randomGenes = new bool[numberOfGenes];
-
-            for (int i = 0; i < numberOfGenes; i++)
-                randomGenes[i] = random.Next(2) % 2 == 1;
+            var randomGenes = Enumerable.Range(0, numberOfCities - 1)
+                .OrderBy(c => random.Next())
+                .ToArray();
 
             return new Individual
             {

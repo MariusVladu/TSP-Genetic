@@ -66,13 +66,13 @@ namespace TSPGenetic.UI
             inputItems.DataSource = itemsTable;
         }
 
-        private List<Item> GetItemsList()
+        private List<City> GetItemsList()
         {
-            var items = new List<Item>();
+            var items = new List<City>();
 
             foreach (DataRow row in itemsTable.Rows)
             {
-                items.Add(new Item
+                items.Add(new City
                 {
                     Weight = Convert.ToInt32(row["Weight"]),
                     Value = Convert.ToInt32(row["Value"])
@@ -88,7 +88,7 @@ namespace TSPGenetic.UI
 
             settings = new Settings
             {
-                Items = items,
+                Cities = items,
                 NumberOfGenes = items.Count,
                 WeightLimit = Convert.ToInt32(inputWeightLimit.Value),
                 NumberOfElites = Convert.ToInt32(inputElites.Value),
@@ -174,21 +174,21 @@ namespace TSPGenetic.UI
             Plot();
         }
 
-        private List<Item> GetInitialItems()
+        private List<City> GetInitialItems()
         {
-            return new List<Item>
+            return new List<City>
             {
-                new Item{ Weight = 7, Value = 5},
-                new Item{ Weight = 2, Value = 4},
-                new Item{ Weight = 1, Value = 7},
-                new Item{ Weight = 9, Value = 2},
-                new Item{ Weight = 20, Value = 5},
-                new Item{ Weight = 11, Value = 6},
-                new Item{ Weight = 2, Value = 6},
-                new Item{ Weight = 15, Value = 10},
-                new Item{ Weight = 3, Value = 1},
-                new Item{ Weight = 4, Value = 2},
-                new Item{ Weight = 8, Value = 5},
+                new City{ Weight = 7, Value = 5},
+                new City{ Weight = 2, Value = 4},
+                new City{ Weight = 1, Value = 7},
+                new City{ Weight = 9, Value = 2},
+                new City{ Weight = 20, Value = 5},
+                new City{ Weight = 11, Value = 6},
+                new City{ Weight = 2, Value = 6},
+                new City{ Weight = 15, Value = 10},
+                new City{ Weight = 3, Value = 1},
+                new City{ Weight = 4, Value = 2},
+                new City{ Weight = 8, Value = 5},
             };
         }
 
