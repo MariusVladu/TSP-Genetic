@@ -22,7 +22,7 @@ namespace TSPGenetic.Providers
 
         private Individual GetRandomIndividual(int numberOfCities)
         {
-            var randomGenes = Enumerable.Range(0, numberOfCities - 1)
+            var randomGenes = Enumerable.Range(0, numberOfCities)
                 .OrderBy(c => random.Next())
                 .ToArray();
 
