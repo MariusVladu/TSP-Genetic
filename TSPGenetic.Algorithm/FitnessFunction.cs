@@ -7,8 +7,8 @@ namespace TSPGenetic.Algorithm
 {
     public class FitnessFunction : IFitnessFunction
     {
-        private readonly List<City> cities;
-        private readonly double[,] distances;
+        public readonly List<City> cities;
+        public readonly double[,] distances;
 
         public FitnessFunction(List<City> cities)
         {

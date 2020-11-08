@@ -1,5 +1,4 @@
-﻿using KellermanSoftware.CompareNetObjects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using TSPGenetic.Domain;
