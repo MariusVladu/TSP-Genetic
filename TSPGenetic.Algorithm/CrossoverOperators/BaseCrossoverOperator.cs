@@ -1,18 +1,18 @@
-﻿using TSPGenetic.Algorithm.Contracts;
+﻿using System;
+using TSPGenetic.Algorithm.Contracts;
 using TSPGenetic.Domain;
-using System;
 
-namespace TSPGenetic.Algorithm
+namespace TSPGenetic.Algorithm.CrossoverOperators
 {
-    public class CrossoverOperator : ICrossoverOperator
+    public abstract class BaseCrossoverOperator : ICrossoverOperator
     {
-        private static readonly Random random = new Random();
+        protected static readonly Random random = new Random();
 
         public Tuple<Individual, Individual> GetOffsprings(Individual parent1, Individual parent2, double crossoverRate)
         {
             ValidateParameters(parent1, parent2, crossoverRate);
 
-            if(random.NextDouble() < crossoverRate)
+            if (random.NextDouble() < crossoverRate)
             {
                 return PerformCrossover(parent1, parent2);
             }
@@ -20,30 +20,7 @@ namespace TSPGenetic.Algorithm
             return CloneParents(parent1, parent2);
         }
 
-        private Tuple<Individual, Individual> PerformCrossover(Individual parent1, Individual parent2)
-        {
-            var numberOfGenes = parent1.Genes.Length;
-            var crossoverPoint = random.Next(numberOfGenes);
-
-            var offspring1 = new Individual { Genes = new bool[numberOfGenes] };
-            var offspring2 = new Individual { Genes = new bool[numberOfGenes] };
-
-            for (int i = 0; i < numberOfGenes; i++)
-            {
-                if (i < crossoverPoint)
-                {
-                    offspring1.Genes[i] = parent1.Genes[i];
-                    offspring2.Genes[i] = parent2.Genes[i];
-                }
-                else
-                {
-                    offspring1.Genes[i] = parent2.Genes[i];
-                    offspring2.Genes[i] = parent1.Genes[i];
-                }
-            }
-
-            return new Tuple<Individual, Individual>(offspring1, offspring2);
-        }
+        protected abstract Tuple<Individual, Individual> PerformCrossover(Individual parent1, Individual parent2);
 
         private Tuple<Individual, Individual> CloneParents(Individual parent1, Individual parent2)
         {

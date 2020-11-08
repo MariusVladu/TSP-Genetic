@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TSPGenetic.Algorithm
+namespace TSPGenetic.SelectionOperators.Algorithm
 {
     public class RouletteWheelSelection : ISelectionOperator
     {

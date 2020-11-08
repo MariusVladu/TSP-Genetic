@@ -39,7 +39,7 @@ namespace TSPGenetic.Algorithm
             this.crossoverOperator = crossoverOperator;
             this.mutationOperator = mutationOperator;
 
-            currentPopulation = initialPopulationProvider.GetInitialPopulation(settings.InitialPopulationSize, settings.NumberOfGenes);
+            currentPopulation = initialPopulationProvider.GetInitialPopulation(settings.PopulationSize, settings.Cities.Count);
             ComputeCurrentGenerationData();
         }
 
@@ -47,7 +47,7 @@ namespace TSPGenetic.Algorithm
         {
             var nextGeneration = new List<Individual>();
 
-            while (nextGeneration.Count < settings.MaxPopulationSize)
+            while (nextGeneration.Count < settings.PopulationSize)
             {
                 var parent1 = selectionOperator.SelectOne(CurrentSolutions);
                 var parent2 = selectionOperator.SelectOne(CurrentSolutions);
@@ -102,7 +102,7 @@ namespace TSPGenetic.Algorithm
                 solutions.Add(new Solution
                 {
                     Individual = individual,
-                    FitnessScore = fitnessFunction.GetFitnessScore(individual, settings.WeightLimit, settings.Cities)
+                    FitnessScore = fitnessFunction.GetFitnessScore(individual)
                 });
 
             return solutions;
