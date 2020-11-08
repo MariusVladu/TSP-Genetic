@@ -50,12 +50,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.labelCitiesInfo = new System.Windows.Forms.Label();
             this.panelBestSolution = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioPMX = new System.Windows.Forms.RadioButton();
+            this.radioOrderOne = new System.Windows.Forms.RadioButton();
+            this.radioCycle = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioSwap = new System.Windows.Forms.RadioButton();
+            this.radioScramble = new System.Windows.Forms.RadioButton();
+            this.radioInversion = new System.Windows.Forms.RadioButton();
+            this.radioInsert = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.inputGenerationsNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMutationRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCrossoverRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMaxPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputElites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputTournamentSize)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonNextGeneration
@@ -329,15 +340,120 @@
             // 
             this.panelBestSolution.Location = new System.Drawing.Point(588, 383);
             this.panelBestSolution.Name = "panelBestSolution";
-            this.panelBestSolution.Size = new System.Drawing.Size(442, 282);
+            this.panelBestSolution.Size = new System.Drawing.Size(442, 454);
             this.panelBestSolution.TabIndex = 10;
             this.panelBestSolution.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBestSolution_Paint);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioPMX);
+            this.groupBox1.Controls.Add(this.radioOrderOne);
+            this.groupBox1.Controls.Add(this.radioCycle);
+            this.groupBox1.Location = new System.Drawing.Point(789, 198);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(85, 104);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Crossover";
+            // 
+            // radioPMX
+            // 
+            this.radioPMX.AutoSize = true;
+            this.radioPMX.Location = new System.Drawing.Point(7, 75);
+            this.radioPMX.Name = "radioPMX";
+            this.radioPMX.Size = new System.Drawing.Size(50, 19);
+            this.radioPMX.TabIndex = 2;
+            this.radioPMX.TabStop = true;
+            this.radioPMX.Text = "PMX";
+            this.radioPMX.UseVisualStyleBackColor = true;
+            // 
+            // radioOrderOne
+            // 
+            this.radioOrderOne.AutoSize = true;
+            this.radioOrderOne.Checked = true;
+            this.radioOrderOne.Location = new System.Drawing.Point(7, 49);
+            this.radioOrderOne.Name = "radioOrderOne";
+            this.radioOrderOne.Size = new System.Drawing.Size(64, 19);
+            this.radioOrderOne.TabIndex = 1;
+            this.radioOrderOne.TabStop = true;
+            this.radioOrderOne.Text = "Order 1";
+            this.radioOrderOne.UseVisualStyleBackColor = true;
+            // 
+            // radioCycle
+            // 
+            this.radioCycle.AutoSize = true;
+            this.radioCycle.Location = new System.Drawing.Point(7, 23);
+            this.radioCycle.Name = "radioCycle";
+            this.radioCycle.Size = new System.Drawing.Size(54, 19);
+            this.radioCycle.TabIndex = 0;
+            this.radioCycle.Text = "Cycle";
+            this.radioCycle.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioSwap);
+            this.groupBox2.Controls.Add(this.radioScramble);
+            this.groupBox2.Controls.Add(this.radioInversion);
+            this.groupBox2.Controls.Add(this.radioInsert);
+            this.groupBox2.Location = new System.Drawing.Point(880, 198);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(94, 129);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Mutation";
+            // 
+            // radioSwap
+            // 
+            this.radioSwap.AutoSize = true;
+            this.radioSwap.Location = new System.Drawing.Point(7, 98);
+            this.radioSwap.Name = "radioSwap";
+            this.radioSwap.Size = new System.Drawing.Size(53, 19);
+            this.radioSwap.TabIndex = 3;
+            this.radioSwap.TabStop = true;
+            this.radioSwap.Text = "Swap";
+            this.radioSwap.UseVisualStyleBackColor = true;
+            // 
+            // radioScramble
+            // 
+            this.radioScramble.AutoSize = true;
+            this.radioScramble.Location = new System.Drawing.Point(7, 73);
+            this.radioScramble.Name = "radioScramble";
+            this.radioScramble.Size = new System.Drawing.Size(74, 19);
+            this.radioScramble.TabIndex = 2;
+            this.radioScramble.TabStop = true;
+            this.radioScramble.Text = "Scramble";
+            this.radioScramble.UseVisualStyleBackColor = true;
+            // 
+            // radioInversion
+            // 
+            this.radioInversion.AutoSize = true;
+            this.radioInversion.Location = new System.Drawing.Point(7, 48);
+            this.radioInversion.Name = "radioInversion";
+            this.radioInversion.Size = new System.Drawing.Size(73, 19);
+            this.radioInversion.TabIndex = 1;
+            this.radioInversion.TabStop = true;
+            this.radioInversion.Text = "Inversion";
+            this.radioInversion.UseVisualStyleBackColor = true;
+            // 
+            // radioInsert
+            // 
+            this.radioInsert.AutoSize = true;
+            this.radioInsert.Checked = true;
+            this.radioInsert.Location = new System.Drawing.Point(7, 23);
+            this.radioInsert.Name = "radioInsert";
+            this.radioInsert.Size = new System.Drawing.Size(54, 19);
+            this.radioInsert.TabIndex = 0;
+            this.radioInsert.TabStop = true;
+            this.radioInsert.Text = "Insert";
+            this.radioInsert.UseVisualStyleBackColor = true;
             // 
             // TSPGenetic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 736);
+            this.ClientSize = new System.Drawing.Size(1067, 849);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panelBestSolution);
             this.Controls.Add(this.labelCitiesInfo);
             this.Controls.Add(this.button1);
@@ -367,6 +483,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputMaxPopulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputElites)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputTournamentSize)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,6 +515,15 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelCitiesInfo;
         private System.Windows.Forms.Panel panelBestSolution;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioPMX;
+        private System.Windows.Forms.RadioButton radioOrderOne;
+        private System.Windows.Forms.RadioButton radioCycle;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioSwap;
+        private System.Windows.Forms.RadioButton radioScramble;
+        private System.Windows.Forms.RadioButton radioInversion;
+        private System.Windows.Forms.RadioButton radioInsert;
     }
 }
 

@@ -13,6 +13,7 @@ using TSPGenetic.Algorithm.SelectionOperators;
 using TSPGenetic.Algorithm.CrossoverOperators;
 using TSPGenetic.Algorithm.MutationOperators;
 using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace TSPGenetic.UI
 {
@@ -32,7 +33,8 @@ namespace TSPGenetic.UI
         private Graphics bestSolutionGraphics;
         private Pen linePen;
         private Pen pointPen;
-        private int pointWidth = 8;
+        private int lineWidth = 3;
+        private int pointWidth = 6;
 
         private List<double> generationsPlotData;
         private List<double> averageScorePlotData;
@@ -43,7 +45,7 @@ namespace TSPGenetic.UI
             InitializeComponent();
 
             bestSolutionGraphics = panelBestSolution.CreateGraphics();
-            linePen = new Pen(Brushes.LightBlue, 3);
+            linePen = new Pen(Brushes.LightBlue, lineWidth);
             pointPen = Pens.DarkRed;
 
             chartAverageScore.plt.XLabel("Generation #");
@@ -64,8 +66,8 @@ namespace TSPGenetic.UI
             fitnessFunction = new FitnessFunction(cities);
             selectionOperator = new TournamentSelection(Convert.ToInt32(inputTournamentSize.Value));
             elitistSelection = new ElitistSelection();
-            crossoverOperator = new OrderOneCrossover();
-            mutationOperator = new InsertMutation();
+            crossoverOperator = GetSelectedCrossoverOperator();
+            mutationOperator = GetSelectedMutationOperator();
             initialPopulationProvider = new InitialPopulationProvider();
 
             settings = new Settings
@@ -217,13 +219,18 @@ namespace TSPGenetic.UI
                 city.Y += offsetY;
             }
 
-            var scaleX = panelBestSolution.Size.Width - 50;
-            var scaleY = panelBestSolution.Size.Height - 50;
+            var scaleX = panelBestSolution.Size.Width;
+            var scaleY = panelBestSolution.Size.Height;
 
             foreach (var city in citiesForDisplay)
             {
                 city.X = (city.X / rangeX) * scaleX;
                 city.Y = (city.Y / rangeY) * scaleY;
+            }
+
+            foreach (var city in citiesForDisplay)
+            {
+                city.Y = scaleY / 2 - (city.Y - scaleY / 2);
             }
 
             return citiesForDisplay
@@ -246,14 +253,14 @@ namespace TSPGenetic.UI
         {
             graphics.Clear(Color.DarkGray);
 
-            foreach (var city in citiesForDisplay)
-                graphics.FillRectangle(pointPen.Brush, city.X - pointWidth/2, city.Y - pointWidth/2, pointWidth, pointWidth);
-
             for (int i = 1; i < solution.Individual.Genes.Length; i++)
                 graphics.DrawLine(
                     linePen,
                     citiesForDisplay[solution.Individual.Genes[i - 1]],
                     citiesForDisplay[solution.Individual.Genes[i]]);
+
+            foreach (var city in citiesForDisplay)
+                graphics.FillRectangle(pointPen.Brush, city.X - pointWidth / 2, city.Y - pointWidth / 2, pointWidth, pointWidth);
         }
 
         private void panelBestSolution_Paint(object sender, PaintEventArgs e)
@@ -261,6 +268,30 @@ namespace TSPGenetic.UI
             if (geneticAlgorithm == null) return;
 
             DrawSolution(geneticAlgorithm.CurrentBestSolution, panelBestSolution, bestSolutionGraphics);
+        }
+
+        private ICrossoverOperator GetSelectedCrossoverOperator()
+        {
+            if (radioCycle.Checked) return new CycleCrossover();
+
+            if (radioOrderOne.Checked) return new OrderOneCrossover();
+
+            if (radioPMX.Checked) return new PMXCrossover();
+
+            throw new InvalidOperationException();
+        }
+
+        private IMutationOperator GetSelectedMutationOperator()
+        {
+            if (radioInsert.Checked) return new InsertMutation();
+
+            if (radioInversion.Checked) return new InversionMutation();
+
+            if (radioScramble.Checked) return new ScrambleMutation();
+
+            if (radioSwap.Checked) return new SwapMutation();
+
+            throw new InvalidOperationException();
         }
     }
 }
