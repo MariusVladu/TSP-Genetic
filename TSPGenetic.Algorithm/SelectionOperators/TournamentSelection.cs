@@ -28,7 +28,7 @@ namespace TSPGenetic.SelectionOperators.Algorithm
                     selectedForTournament.Add(randomSolution);
             }
 
-            return selectedForTournament.OrderByDescending(x => x.FitnessScore).First().Individual;
+            return selectedForTournament.OrderBy(x => x.FitnessScore).First().Individual;
         }
     }
 }

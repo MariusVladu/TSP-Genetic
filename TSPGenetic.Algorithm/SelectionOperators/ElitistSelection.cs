@@ -9,12 +9,12 @@ namespace TSPGenetic.SelectionOperators.Algorithm
     {
         public List<Solution> SelectMany(int n, List<Solution> solutions)
         {
-            return solutions.OrderByDescending(s => s.FitnessScore).Take(n).ToList();
+            return solutions.OrderBy(s => s.FitnessScore).Take(n).ToList();
         }
 
         Solution IElitistSelection.SelectOne(List<Solution> solutions)
         {
-            return solutions.OrderByDescending(s => s.FitnessScore).First();
+            return solutions.OrderBy(s => s.FitnessScore).First();
         }
     }
 }

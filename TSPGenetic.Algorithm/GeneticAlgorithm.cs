@@ -92,7 +92,7 @@ namespace TSPGenetic.Algorithm
             CurrentGenerationNumber++;
             CurrentSolutions = GetCurrentSolutions();
             AverageScore = CurrentSolutions.Average(s => s.FitnessScore);
-            CurrentBestSolution = CurrentSolutions.OrderByDescending(s => s.FitnessScore).First();
+            CurrentBestSolution = CurrentSolutions.OrderBy(s => s.FitnessScore).First();
         }
 
         private List<Solution> GetCurrentSolutions()
