@@ -2,7 +2,7 @@
 {
     public static class CommonFunctions
     {
-        public static void SwapIfInvalidInterval(ref int left, ref int right)
+        public static void SwapIfNotInOrder(ref int left, ref int right)
         {
             if (left > right)
             {

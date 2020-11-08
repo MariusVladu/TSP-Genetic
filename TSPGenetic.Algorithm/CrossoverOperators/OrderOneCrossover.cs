@@ -6,15 +6,20 @@ using TSPGenetic.Domain;
 
 namespace TSPGenetic.CrossoverOperators.Algorithm
 {
-    public class OrderOneCrossoverOperator : BaseCrossoverOperator
+    public class OrderOneCrossover : BaseCrossoverOperator
     {
         protected override Tuple<Individual, Individual> PerformCrossover(Individual parent1, Individual parent2)
         {
-            var numberOfGenes = parent1.Genes.Length;
-            var left = random.Next(numberOfGenes);
-            var right = random.Next(numberOfGenes);
+            var left = random.Next(parent1.Genes.Length);
+            var right = random.Next(parent1.Genes.Length);
 
-            CommonFunctions.SwapIfInvalidInterval(ref left, ref right);
+            return PerformOrderOneCrossover(parent1, parent2, left, right);
+        }
+
+        public Tuple<Individual, Individual> PerformOrderOneCrossover(Individual parent1, Individual parent2, int left, int right)
+        {
+            var numberOfGenes = parent1.Genes.Length;
+            CommonFunctions.SwapIfNotInOrder(ref left, ref right);
 
             var offspring1 = GetOffspring(left, right, numberOfGenes, parent1, parent2);
             var offspring2 = GetOffspring(left, right, numberOfGenes, parent2, parent1);

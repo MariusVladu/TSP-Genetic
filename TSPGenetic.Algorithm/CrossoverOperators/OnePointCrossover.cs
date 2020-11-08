@@ -8,9 +8,14 @@ namespace TSPGenetic.CrossoverOperators.Algorithm
     {
         protected override Tuple<Individual, Individual> PerformCrossover(Individual parent1, Individual parent2)
         {
-            var numberOfGenes = parent1.Genes.Length;
-            var crossoverPoint = random.Next(numberOfGenes);
+            var crossoverPoint = random.Next(parent1.Genes.Length);
 
+            return PerformOnePointCrossover(parent1, parent2, crossoverPoint);
+        }
+
+        public Tuple<Individual, Individual> PerformOnePointCrossover(Individual parent1, Individual parent2, int crossoverPoint)
+        {
+            var numberOfGenes = parent1.Genes.Length;
             var offspring1 = new Individual { Genes = new int[numberOfGenes] };
             var offspring2 = new Individual { Genes = new int[numberOfGenes] };
 

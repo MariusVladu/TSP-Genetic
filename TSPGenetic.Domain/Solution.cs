@@ -9,7 +9,7 @@ namespace TSPGenetic.Domain
 
         public override string ToString()
         {
-            return $"{string.Join( ", ", Individual.Genes.Select(x => x ? 1 : 0))} - Score = {FitnessScore}";
+            return $"{string.Join( ", ", Individual.Genes)} - Score = {FitnessScore}";
         }
     }
 }
