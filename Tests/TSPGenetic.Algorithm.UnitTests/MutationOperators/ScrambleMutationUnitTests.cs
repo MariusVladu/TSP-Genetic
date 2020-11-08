@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using TSPGenetic.Algorithm.MutationOperators;
 using TSPGenetic.Domain;
-using TSPGenetic.MutationOperators.Algorithm;
 
 namespace TSPGenetic.Algorithm.UnitTests.MutationOperators
 {

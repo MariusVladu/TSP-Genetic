@@ -2,7 +2,7 @@
 using System;
 using TSPGenetic.Algorithm.CrossoverOperators;
 
-namespace TSPGenetic.CrossoverOperators.Algorithm
+namespace TSPGenetic.Algorithm.CrossoverOperators
 {
     public class OnePointCrossover : BaseCrossoverOperator
     {

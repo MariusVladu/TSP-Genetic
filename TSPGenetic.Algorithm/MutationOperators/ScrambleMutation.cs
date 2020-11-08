@@ -5,7 +5,7 @@ using TSPGenetic.Algorithm.Contracts;
 using TSPGenetic.Algorithm.Helpers;
 using TSPGenetic.Domain;
 
-namespace TSPGenetic.MutationOperators.Algorithm
+namespace TSPGenetic.Algorithm.MutationOperators
 {
     public class ScrambleMutation : IMutationOperator
     {

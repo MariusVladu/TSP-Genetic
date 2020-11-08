@@ -4,7 +4,7 @@ using TSPGenetic.Algorithm.CrossoverOperators;
 using TSPGenetic.Algorithm.Helpers;
 using TSPGenetic.Domain;
 
-namespace TSPGenetic.CrossoverOperators.Algorithm
+namespace TSPGenetic.Algorithm.CrossoverOperators
 {
     public class PMXCrossover : BaseCrossoverOperator
     {

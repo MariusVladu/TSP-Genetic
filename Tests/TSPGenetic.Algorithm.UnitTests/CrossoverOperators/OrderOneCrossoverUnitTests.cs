@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using TSPGenetic.CrossoverOperators.Algorithm;
+using TSPGenetic.Algorithm.CrossoverOperators;
 using TSPGenetic.Domain;
 
 namespace TSPGenetic.Algorithm.UnitTests.CrossoverOperators

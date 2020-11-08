@@ -3,7 +3,7 @@ using TSPGenetic.Domain;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TSPGenetic.SelectionOperators.Algorithm
+namespace TSPGenetic.Algorithm.SelectionOperators
 {
     public class ElitistSelection : IElitistSelection
     {

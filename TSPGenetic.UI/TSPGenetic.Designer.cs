@@ -47,17 +47,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.inputTournamentSize = new System.Windows.Forms.NumericUpDown();
             this.buttonReset = new System.Windows.Forms.Button();
-            this.inputWeightLimit = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.inputItems = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelCitiesInfo = new System.Windows.Forms.Label();
+            this.panelBestSolution = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.inputGenerationsNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMutationRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCrossoverRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMaxPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputElites)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputTournamentSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputWeightLimit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputItems)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNextGeneration
@@ -231,7 +229,7 @@
             this.inputMaxPopulation.Size = new System.Drawing.Size(71, 23);
             this.inputMaxPopulation.TabIndex = 5;
             this.inputMaxPopulation.Value = new decimal(new int[] {
-            50,
+            20,
             0,
             0,
             0});
@@ -262,7 +260,7 @@
             this.inputElites.Size = new System.Drawing.Size(71, 23);
             this.inputElites.TabIndex = 5;
             this.inputElites.Value = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});
@@ -293,7 +291,7 @@
             this.inputTournamentSize.Size = new System.Drawing.Size(71, 23);
             this.inputTournamentSize.TabIndex = 5;
             this.inputTournamentSize.Value = new decimal(new int[] {
-            4,
+            2,
             0,
             0,
             0});
@@ -308,49 +306,41 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
-            // inputWeightLimit
+            // button1
             // 
-            this.inputWeightLimit.Location = new System.Drawing.Point(712, 360);
-            this.inputWeightLimit.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.inputWeightLimit.Name = "inputWeightLimit";
-            this.inputWeightLimit.Size = new System.Drawing.Size(71, 23);
-            this.inputWeightLimit.TabIndex = 5;
-            this.inputWeightLimit.Value = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
+            this.button1.Location = new System.Drawing.Point(708, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Load Cities";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label7
+            // labelCitiesInfo
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(603, 362);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 15);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Weight Limit";
+            this.labelCitiesInfo.AutoSize = true;
+            this.labelCitiesInfo.Location = new System.Drawing.Point(594, 353);
+            this.labelCitiesInfo.Name = "labelCitiesInfo";
+            this.labelCitiesInfo.Size = new System.Drawing.Size(92, 15);
+            this.labelCitiesInfo.TabIndex = 9;
+            this.labelCitiesInfo.Text = "No cities loaded";
             // 
-            // inputItems
+            // panelBestSolution
             // 
-            this.inputItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inputItems.Location = new System.Drawing.Point(603, 389);
-            this.inputItems.Name = "inputItems";
-            this.inputItems.Size = new System.Drawing.Size(261, 282);
-            this.inputItems.TabIndex = 8;
-            this.inputItems.Text = "dataGridView1";
+            this.panelBestSolution.Location = new System.Drawing.Point(588, 383);
+            this.panelBestSolution.Name = "panelBestSolution";
+            this.panelBestSolution.Size = new System.Drawing.Size(442, 282);
+            this.panelBestSolution.TabIndex = 10;
+            this.panelBestSolution.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBestSolution_Paint);
             // 
             // TSPGenetic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 736);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.inputWeightLimit);
-            this.Controls.Add(this.inputItems);
+            this.ClientSize = new System.Drawing.Size(1067, 736);
+            this.Controls.Add(this.panelBestSolution);
+            this.Controls.Add(this.labelCitiesInfo);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.inputTournamentSize);
             this.Controls.Add(this.label6);
@@ -370,15 +360,13 @@
             this.Controls.Add(this.chartAverageScore);
             this.Controls.Add(this.buttonNextGeneration);
             this.Name = "TSPGenetic";
-            this.Text = "TSPGenetic";
+            this.Text = "TSP Genetic";
             ((System.ComponentModel.ISupportInitialize)(this.inputGenerationsNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMutationRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputCrossoverRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputMaxPopulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputElites)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputTournamentSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputWeightLimit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,9 +392,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown inputTournamentSize;
         private System.Windows.Forms.Button buttonReset;
-        private System.Windows.Forms.DataGridView inputItems;
-        private System.Windows.Forms.NumericUpDown inputWeightLimit;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelCitiesInfo;
+        private System.Windows.Forms.Panel panelBestSolution;
     }
 }
 
