@@ -139,6 +139,8 @@ namespace TSPGenetic.UI
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
+            Benchmark();
+
             InitializeGeneticAlgorithm();
 
             var stopwatch = new Stopwatch();
@@ -292,6 +294,101 @@ namespace TSPGenetic.UI
             if (radioSwap.Checked) return new SwapMutation();
 
             throw new InvalidOperationException();
+        }
+
+        private void Benchmark()
+        {
+            fitnessFunction = new FitnessFunction(cities);
+            selectionOperator = new TournamentSelection(Convert.ToInt32(inputTournamentSize.Value));
+            elitistSelection = new ElitistSelection();
+            initialPopulationProvider = new InitialPopulationProvider();
+            selectionOperator = new TournamentSelection(Convert.ToInt32(inputTournamentSize.Value));
+
+
+            var csv = "Crossover Operator,Mutation Operator,Avg. Best Score,Avg. Computation Time";
+
+            var result = RunBenchmark(new CycleCrossover(), new InsertMutation());
+            csv += $"\nCycle,Insert,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new InversionMutation());
+            csv += $"\nCycle,Inversion,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new ScrambleMutation());
+            csv += $"\nCycle,Scramble,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new SwapMutation());
+            csv += $"\nCycle,Swap,{result.Item1},{result.Item2}";
+
+
+            result = RunBenchmark(new OrderOneCrossover(), new InsertMutation());
+            csv += $"\nOrder1,Insert,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new OrderOneCrossover(), new InversionMutation());
+            csv += $"\nOrder1,Inversion,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new OrderOneCrossover(), new ScrambleMutation());
+            csv += $"\nOrder1,Scramble,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new OrderOneCrossover(), new SwapMutation());
+            csv += $"\nOrder1,Swap,{result.Item1},{result.Item2}";
+
+
+            result = RunBenchmark(new PMXCrossover(), new InsertMutation());
+            csv += $"\nPMX,Insert,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new InversionMutation());
+            csv += $"\nPMX,Inversion,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new ScrambleMutation());
+            csv += $"\nPMX,Scramble,{result.Item1},{result.Item2}";
+
+            result = RunBenchmark(new CycleCrossover(), new SwapMutation());
+            csv += $"\nPMX,Swap,{result.Item1},{result.Item2}";
+
+            File.WriteAllText("simulations.csv", csv);
+        }
+
+        private Tuple<int, long> RunBenchmark(ICrossoverOperator crossover, IMutationOperator mutation)
+        {
+            crossoverOperator = crossover;
+            mutationOperator = mutation;
+
+            var bestFitnessScores = new List<int>();
+            var computationTimes = new List<long>();
+
+            for (int k = 0; k < 20; k++)
+            {
+                Initialize();
+                var stopwatch = new Stopwatch();
+                for (int i = 0; i < inputGenerationsNumber.Value; i++)
+                {
+                    stopwatch.Start();
+                    geneticAlgorithm.ComputeNextGeneration();
+                    stopwatch.Stop();
+                }
+
+                bestFitnessScores.Add(geneticAlgorithm.CurrentBestSolution.FitnessScore);
+                computationTimes.Add(stopwatch.ElapsedMilliseconds);
+            }
+
+            var avgBestScore = bestFitnessScores.Average();
+            var avgComputationTime = computationTimes.Average();
+
+            return new Tuple<int, long>((int)avgBestScore, (long)avgComputationTime);
+        }
+
+        private void Initialize()
+        {
+            settings = new Settings
+            {
+                Cities = cities,
+                NumberOfElites = Convert.ToInt32(inputElites.Value),
+                PopulationSize = Convert.ToInt32(inputMaxPopulation.Value),
+                CrossoverRate = Convert.ToDouble(inputCrossoverRate.Value),
+                MutationRate = Convert.ToDouble(inputMutationRate.Value)
+            };
+
+            geneticAlgorithm = new GeneticAlgorithm(settings, initialPopulationProvider, fitnessFunction, selectionOperator, elitistSelection, crossoverOperator, mutationOperator);
         }
     }
 }
